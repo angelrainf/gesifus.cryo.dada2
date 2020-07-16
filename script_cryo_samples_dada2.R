@@ -125,13 +125,11 @@ fit = pml(treeNJ, data=phang.align)
 fitGTR <- update(fit, k=4, inv=0.2)
 ###
 
-# Phyloseq analysis include the phylogeneic tree
+# New phyloseq object including phylogenetic tree
 seqtab.nochim2<-seqtab.nochim
 colnames(seqtab.nochim2)<-rownames(seqs.tab)
 taxa2<-taxa
 rownames(taxa2)<-rownames(seqs.tab)
-
-# New phyloseq object with including phylogenetic tree
 ps <- phyloseq(otu_table(seqtab.nochim2, taxa_are_rows=FALSE), 
                sample_data(samdf), 
                tax_table(as.matrix(taxa2)),phy_tree(fitGTR$tree))
